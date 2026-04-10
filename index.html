@@ -4,192 +4,280 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sonamu Bakery</title>
+
+  <!-- Favicon (pine tree mark) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+    <circle cx='50' cy='45' r='35' stroke='%233a3a32' stroke-width='2' fill='none'/>
+    <polygon points='50,20 35,45 65,45' fill='%233a3a32'/>
+    <polygon points='50,30 33,55 67,55' fill='%233a3a32'/>
+    <polygon points='50,40 30,65 70,65' fill='%233a3a32'/>
+    <rect x='46' y='65' width='8' height='12' fill='%233a3a32'/>
+  </svg>" />
+
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#111;
-      --muted:#666;
-      --accent:#2f4f3f;
-      --line:#eee;
+      --bg:#f6f2ec;
+      --text:#1f1f1f;
+      --muted:#6f6a63;
+      --accent:#d9d2c7;
     }
 
     *{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 24px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      max-width:1000px;
-      margin:auto;
-    }
-
-    header h1{
-      font-size:18px;
-      font-weight:600;
+    body{
       margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      background: linear-gradient(rgba(246,242,236,0.88), rgba(246,242,236,0.88)),
+        url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d');
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
     }
 
-    nav a {
-      margin-left:20px;
-      text-decoration:none;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .hero {
+    header{
+      padding:28px 20px 10px;
       text-align:center;
-      padding:80px 20px 60px;
     }
 
-    .hero h2{
-      font-size:32px;
+    .logo{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo svg{
+      width:34px;
+      height:34px;
+    }
+
+    h1{
+      margin:0;
       font-weight:500;
-      margin-bottom:10px;
+      letter-spacing:0.05em;
+      font-size:1.6rem;
     }
 
-    .hero p{
+    .divider{
+      width:40px;
+      height:1px;
+      background:var(--muted);
+      margin:12px auto 0;
+      opacity:0.4;
+    }
+
+    .lang-toggle{
+      position:absolute;
+      top:20px;
+      right:20px;
+      font-size:0.75rem;
       color:var(--muted);
-      margin:5px 0;
+      cursor:pointer;
+      letter-spacing:0.08em;
     }
 
-    .section {
-      max-width:1000px;
-      margin:60px auto;
-      padding:0 20px;
+    .container{
+      max-width:820px;
+      margin:0 auto;
+      padding:0 20px 60px;
     }
 
-    .section h3{
-      font-size:16px;
-      font-weight:600;
-      margin-bottom:20px;
+    .banner{
+      margin:10px 0 30px;
+    }
+
+    .banner img{
+      width:100%;
+      display:block;
+      border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .section{
+      margin-bottom:50px;
+    }
+
+    .section-title{
+      font-size:0.85rem;
+      letter-spacing:0.12em;
+      color:var(--muted);
+      margin-bottom:16px;
+      text-transform:uppercase;
     }
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:1fr 1fr;
       gap:20px;
     }
 
     .card{
-      border:1px solid var(--line);
-      border-radius:8px;
-      overflow:hidden;
+      background:rgba(255,255,255,0.65);
+      padding:14px;
+      border-radius:14px;
+      backdrop-filter:blur(6px);
     }
 
     .card img{
       width:100%;
-      height:180px;
+      height:160px;
       object-fit:cover;
-      display:block;
+      border-radius:10px;
+      margin-bottom:10px;
     }
 
-    .card p{
-      padding:10px;
-      font-size:14px;
+    .card-title{
+      font-size:1rem;
+      margin-bottom:6px;
+      font-weight:500;
     }
 
-    .menu-item{
-      display:flex;
-      justify-content:space-between;
-      padding:10px 0;
-      border-bottom:1px solid var(--line);
-      font-size:14px;
+    .card-desc{
+      font-size:0.9rem;
+      color:var(--muted);
+      line-height:1.7;
     }
 
     footer{
       text-align:center;
-      padding:40px 20px;
-      font-size:12px;
+      padding:40px 0 20px;
+      font-size:0.8rem;
       color:var(--muted);
-      border-top:1px solid var(--line);
-      margin-top:60px;
     }
 
+    .insta{
+      margin-top:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--text);
+      text-decoration:none;
+    }
+
+    @media(max-width:700px){
+      .grid{grid-template-columns:1fr}
+    }
   </style>
 </head>
+
 <body>
 
+  <div class="lang-toggle" onclick="toggleLang()">EN / KR</div>
+
   <header>
-    <h1>Sonamu Bakery 🌲</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#menu">Menu</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="logo">
+      <!-- Full Logo -->
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:120px; height:auto;">
+        <circle cx="200" cy="110" r="70" stroke="#3a3a32" stroke-width="3" fill="none"/>
+        <polygon points="200,60 170,100 230,100" fill="#3a3a32"/>
+        <polygon points="200,80 165,120 235,120" fill="#3a3a32"/>
+        <polygon points="200,100 160,140 240,140" fill="#3a3a32"/>
+        <rect x="192" y="140" width="16" height="25" fill="#3a3a32"/>
+
+        <text x="200" y="220" text-anchor="middle"
+          font-family="serif" font-size="34" letter-spacing="4"
+          fill="#3a3a32">SONAMU</text>
+
+        <line x1="120" y1="240" x2="280" y2="240"
+          stroke="#3a3a32" stroke-width="1"/>
+
+        <text x="200" y="265" text-anchor="middle"
+          font-family="serif" font-size="16" letter-spacing="6"
+          fill="#3a3a32">BAKERY</text>
+      </svg>
+
+      <h1 data-en="Sonamu Bakery" data-ko="소나무 베이커리" style="margin-top:8px;">Sonamu Bakery</h1>
+    </div>
+    <div class="divider"></div>
   </header>
 
-  <section class="hero">
-    <h2>Sourdough rooted in Korea</h2>
-    <p>Local grains & seasonal ingredients</p>
-    <p>Coming 2026</p>
-  </section>
+  <div class="container">
 
-  <section id="gallery" class="section">
-    <h3>Selected Bakes</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73" alt="Sourdough" />
-        <p>Sourdough</p>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff" alt="Bread" />
-        <p>Fresh Bread</p>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907" alt="Pastry" />
-        <p>Pastries</p>
+    <div class="banner">
+      <img src="images/banner.png" alt="Sonamu Bakery Banner" />
+    </div>
+
+    <div class="section">
+      <div class="section-title" data-en="About" data-ko="소개">About</div>
+      <div class="card" style="background:transparent; padding:0;">
+        <div class="card-desc" style="line-height:1.9; font-size:0.95rem;">
+          <div data-en="Sourdough shaped by Korean ingredients." data-ko="한국 식재료로 완성하는 사워도우.">Sourdough shaped by Korean ingredients.</div>
+          <div style="height:14px"></div>
+          <div data-en="Local grains and flavors rarely found beyond Korea." data-ko="한국에서만 만날 수 있는 곡물과 재료들.">Local grains and flavors rarely found beyond Korea.</div>
+          <div style="height:14px"></div>
+          <div data-en="Seasonal baking, reinterpreting familiar forms." data-ko="제철 재료로 익숙한 빵을 새롭게 풀어냅니다.">Seasonal baking, reinterpreting familiar forms.</div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section id="menu" class="section">
-    <h3>Menu</h3>
-    <div class="menu-item"><span>Sourdough</span><span>₩8,000</span></div>
-    <div class="menu-item"><span>Cheese Sourdough</span><span>₩9,000</span></div>
-    <div class="menu-item"><span>Cinnamon Roll</span><span>₩4,500</span></div>
-    <div class="menu-item"><span>Soft Roll</span><span>₩3,000</span></div>
-    <div class="menu-item"><span>Cookie</span><span>₩2,500</span></div>
-  </section>
+    <div class="section">
+      <div class="section-title" data-en="Sourdough" data-ko="사워도우">Sourdough</div>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec" />
+          <div class="card-title">Country Loaf</div>
+          <div class="card-desc">Naturally fermented, crisp crust</div>
+        </div>
 
-  <section id="about" class="section">
-    <h3>About</h3>
-    <p>
-      Sonamu Bakery is a small artisan bakery focused on sourdough and seasonal ingredients from Korea.
-      We value simplicity, fermentation, and thoughtful baking.
-    </p>
-  </section>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df" />
+          <div class="card-title">Walnut Sourdough</div>
+          <div class="card-desc">Korean walnuts, subtle sweetness</div>
+        </div>
+      </div>
+    </div>
 
-  <section id="contact" class="section">
-    <h3>Contact</h3>
-    <p>hello@sonamubakery.com</p>
-    <p>@sonamubakery</p>
-  </section>
+    <div class="section">
+      <div class="section-title" data-en="Seasonal" data-ko="제철 재료">Seasonal</div>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0" />
+          <div class="card-title">Sweet Red Bean</div>
+          <div class="card-desc">Classic Korean flavor</div>
+        </div>
 
-  <section class="section" id="social">
-    <h3>Follow</h3>
-    <a href="https://instagram.com/sonamu_bakery" target="_blank" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);font-size:14px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-        <path d="M16 11.37a4 4 0 1 1-7.75 1.12 4 4 0 0 1 7.75-1.12z"></path>
-        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-      </svg>
-      @sonamu_bakery
-    </a>
-  </section>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73" />
+          <div class="card-title">Matcha Cream</div>
+          <div class="card-desc">Soft, lightly bitter</div>
+        </div>
+      </div>
+    </div>
 
-  <footer>
-    © 2026 Sonamu Bakery
-  </footer>
+    <footer>
+      <div data-en="Coming 2026" data-ko="2026년 오픈 예정">Coming 2026</div>
+      <a class="insta" href="https://instagram.com/sonamu_bakery" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+        </svg>
+        @sonamu_bakery
+      </a>
+    </footer>
+
+  </div>
+
+  <script>
+    let currentLang = 'en';
+
+    function toggleLang() {
+      var next = currentLang === 'en' ? 'ko' : 'en';
+
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        var txt = el.getAttribute('data-' + next);
+        if (txt !== null) {
+          el.textContent = txt;
+        }
+      });
+
+      currentLang = next;
+    }
+  </script>
 
 </body>
 </html>
